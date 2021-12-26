@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">Pomidor</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/src/css/main.min.css">
+    <!-- Fontawesome -->
+    <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+        rel="stylesheet" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="container flex justify-between align-center">
+            <a href="#" class="logo">Pomidor</a>
+            <div class="buttons">
+                <button class="far fa-fw fa-moon theme-toggle"></button>
+                <button class="far fa-fw fa-cog setting-btn"></button>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="card">
+            <ul class="card__navigation">
+                <li class="active">
+                    <button>Pomodoro</button>
+                </li>
+                <li>
+                    <button>Short Break</button>
+                </li>
+                <li>
+                    <button>Long Break</button>
+                </li>
+            </ul>
+            <p class="card__timer">
+                <span id="minutes">25</span><span class="separator">:</span><span id="seconds">00</span>
+            </p>
+            <p class="card__message">Time to Focus!</p>
+            <button class="card__button" id="start-btn">Start</button>
+        </div>
+    </div>
+
+    <script src="/src/js/app.js"></script>
+</body>
+
+</html>

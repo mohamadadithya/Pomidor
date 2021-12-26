@@ -1,0 +1,165 @@
+$primaryColor: hsl(0, 50%, 60%);
+$secondaryColor: hsl(180, 50%, 38%);
+$tertierColor: hsl(0, 0%, 100%);
+
+:root {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: $tertierColor;
+    font-weight: 400;
+}
+
+@mixin respond ($breakpoint) {
+    @if $breakpoint==tablet {
+        @media (min-width: 768px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint==desktop {
+        @media (min-width: 768px) {
+            @content;
+        }
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    color: inherit;
+}
+
+a,
+button {
+    cursor: none;
+    background: none;
+
+    @include respond(tablet) {
+        cursor: pointer;
+    }
+}
+
+body {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    background-color: $primaryColor;
+    width: 100%;
+}
+
+.header {
+    padding: 1rem 0;
+    font-size: 1.4rem;
+    margin-bottom: 1.5em;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: $primaryColor;
+
+    .logo {
+        font-weight: 800;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+    }
+
+    .buttons {
+        .theme-toggle {
+            margin-right: 10px;
+        }
+    }
+}
+
+.card {
+    background-color: rgba($color: #FFF, $alpha: .2);
+    border-radius: 10px;
+    padding: 1.8rem;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+
+    &__navigation {
+        display: flex;
+        list-style: none;
+        justify-content: space-between;
+        margin-bottom: 2em;
+
+        li {
+            padding: 6px 10px;
+            border-radius: 4px;
+
+            &.active {
+                background-color: rgba($color: #000, $alpha: .2);
+                font-weight: 600;
+
+                button {
+                    font-weight: 600;
+                }
+            }
+
+            &:hover {
+                background-color: rgba($color: #000, $alpha: .2);
+            }
+
+            &:nth-child(2) {
+                margin: 0 1rem;
+            }
+        }
+    }
+
+    &__timer {
+        font-family: 'Roboto', sans-serif;
+        font-size: 5rem;
+        margin-bottom: .4em;
+        font-weight: 700;
+
+        .separator {
+            font-family: 'Poppins', sans-serif;
+            margin: 0 12px;
+        }
+    }
+
+    &__message {
+        color: hsl(0, 0%, 87%);
+    }
+
+    &__button {
+        background-color: $tertierColor;
+        color: $primaryColor;
+        display: block;
+        width: 100%;
+        padding: 1em 0;
+        border-radius: 6px;
+        margin-top: 1rem;
+        transition: .3s all ease;
+
+        &:active {
+            transform: scale(.96);
+        }
+    }
+}
+
+.container {
+    margin: 0 1.5rem;
+
+    @include respond(tablet) {
+        margin: 0 2rem;
+    }
+}
+
+.flex {
+    display: flex;
+
+    &.justify-between {
+        justify-content: space-between;
+    }
+
+    &.align-center {
+        align-items: center;
+    }
+}
