@@ -58,6 +58,7 @@ const switchMode = (timeMode, timeMinutes, timeSeconds, defaultMinutes, defaultS
     startButton.classList.remove('d-none')
     pauseButton.classList.add('d-none')
     resetButton.classList.add('d-none')
+    resumeButton.classList.add('d-none')
     
     messageEl.textContent = timeMode === 'pomodoro' ? 'Time to Focus!' : 'Time to Break!'
 
