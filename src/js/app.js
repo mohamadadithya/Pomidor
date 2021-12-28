@@ -25,22 +25,6 @@ let minutesInterval
 let secondsInterval
 let mode = 'pomodoro'
 
-navigationButtons.forEach((button, index) => {
-    button.addEventListener('click', () => {
-        button.classList.add('active')
-        if(index === 1) {
-            navigationButtons[0].classList.remove('active')
-            navigationButtons[2].classList.remove('active')
-        } else if(index === 2) {
-            navigationButtons[0].classList.remove('active')
-            navigationButtons[1].classList.remove('active')
-        } else {
-            navigationButtons[1].classList.remove('active')
-            navigationButtons[2].classList.remove('active')
-        }
-    })
-})
-
 pomodoroButton.addEventListener('click', () => {
     switchMode('pomodoro', 24, 59, 25, 0, 'hsl(0, 50%, 60%)')
 })
@@ -53,13 +37,21 @@ longBreakButton.addEventListener('click', () => {
     switchMode('long', 14, 59, 15, 0, 'hsl(204, 70%, 55%)')
 })
 
+const playAudio = (source) => {
+    audioPlayer.src = `/src/audio/${source}`
+    audioPlayer.play()
+}
+
 const switchMode = (timeMode, timeMinutes, timeSeconds, defaultMinutes, defaultSeconds, modeColor) => {
+    // Stop the timer when mode is changing
     clearIntervals()
+
     startButton.classList.remove('d-none')
     pauseButton.classList.add('d-none')
     resetButton.classList.add('d-none')
     resumeButton.classList.add('d-none')
     
+    // Print the message text
     messageEl.textContent = timeMode === 'pomodoro' ? 'Time to Focus!' : 'Time to Break!'
 
     mode = timeMode
@@ -68,6 +60,27 @@ const switchMode = (timeMode, timeMinutes, timeSeconds, defaultMinutes, defaultS
     minutesEl.textContent = twoDigits(defaultMinutes)
     secondsEl.textContent = twoDigits(defaultSeconds)
     switchTheme(modeColor)
+
+    // Check navigation button active
+    switch (timeMode) {
+        case 'pomodoro':
+            navigationButtons[0].classList.add('active')
+            navigationButtons[1].classList.remove('active')
+            navigationButtons[2].classList.remove('active')
+            break
+        case 'short':
+            navigationButtons[0].classList.remove('active')
+            navigationButtons[1].classList.add('active')
+            navigationButtons[2].classList.remove('active')
+            break
+        case 'long':
+            navigationButtons[0].classList.remove('active')
+            navigationButtons[1].classList.remove('active')
+            navigationButtons[2].classList.add('active')
+            break
+        default:
+            console.log('Navigation not available.')
+    }
 }
 
 const switchTheme = (color) => {
@@ -101,16 +114,19 @@ const startTimer = () => {
                 // Stop timer
                 clearInterval(minutesInterval)
                 clearInterval(secondsInterval)
+                // Notify the user when timer end
+                playAudio('bell.ogg')
                 // Reset timer to default
                 if(mode === 'pomodoro') {
                     resetTimer(25)
+                    switchMode('short', 4, 59, 5, 0, 'hsl(180, 50%, 38%)')
                 } else if(mode === 'short') {
                     resetTimer(5)
+                    switchMode('pomodoro', 24, 59, 25, 0, 'hsl(0, 50%, 60%)')
                 } else {
                     resetTimer(15)
+                    switchMode('pomodoro', 24, 59, 25, 0, 'hsl(0, 50%, 60%)')
                 }
-                audioPlayer.src = '/src/audio/bell.ogg'
-                audioPlayer.play()
             }
             seconds = 60
         }
@@ -127,8 +143,7 @@ const resetTimer = (duration) => {
 
 cardButtons.forEach(button => {
     button.addEventListener('click', () => {
-        audioPlayer.src = '/src/audio/click.ogg'
-        audioPlayer.play()
+        playAudio('click.ogg')
     })
 })
 
@@ -137,6 +152,8 @@ startButton.addEventListener('click', () => {
     pauseButton.classList.remove('d-none')
     resetButton.classList.remove('d-none')
     setTimeout(startTimer, 1000)
+    // Play message audio when start button clicked
+    mode === 'pomodoro' ? playAudio('focus.ogg') : playAudio('break.ogg')
 })
 
 pauseButton.addEventListener('click', () => {
