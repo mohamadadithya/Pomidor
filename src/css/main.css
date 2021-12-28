@@ -66,17 +66,24 @@ body {
   text-align: center;
   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
           box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+  width: 100%;
 }
 
 .card__navigation {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: block;
   list-style: none;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin-bottom: 2em;
+}
+
+@media (min-width: 768px) {
+  .card__navigation {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
 }
 
 .card__navigation li button {
@@ -94,7 +101,13 @@ body {
 }
 
 .card__navigation li:nth-child(2) {
-  margin: 0 1rem;
+  margin: .6rem 0;
+}
+
+@media (min-width: 768px) {
+  .card__navigation li:nth-child(2) {
+    margin: 0 1rem;
+  }
 }
 
 .card__timer {
