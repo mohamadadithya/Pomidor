@@ -19,34 +19,38 @@
 
 <body>
     <header class="header">
-        <div class="container flex justify-between align-center">
+        <div class="container flex justify-center">
             <a href="#" class="logo">Pomidor</a>
-            <div class="buttons">
-                <button class="far fa-fw fa-moon theme-toggle"></button>
-                <button class="far fa-fw fa-cog setting-btn"></button>
-            </div>
         </div>
     </header>
     <div class="container">
         <div class="card">
             <ul class="card__navigation">
-                <li class="active">
-                    <button>Pomodoro</button>
+                <li>
+                    <button type="button" class="card__navigation--button active" id="pomodoro-btn"
+                        class="active">Pomodoro</button>
                 </li>
                 <li>
-                    <button>Short Break</button>
+                    <button type="button" class="card__navigation--button" id="short-btn">Short Break</button>
                 </li>
                 <li>
-                    <button>Long Break</button>
+                    <button type="button" class="card__navigation--button" id="long-btn">Long Break</button>
                 </li>
             </ul>
             <p class="card__timer">
                 <span id="minutes">25</span><span class="separator">:</span><span id="seconds">00</span>
             </p>
             <p class="card__message">Time to Focus!</p>
-            <button class="card__button" id="start-btn">Start</button>
+            <button type="button" class="card__button" id="start-btn">Start</button>
+            <div class="grid column-2 gap-1">
+                <button type="button" class="card__button d-none" id="resume-btn">Resume</button>
+                <button type="button" class="card__button d-none" id="pause-btn">Pause</button>
+                <button type="button" class="card__button d-none" id="reset-btn"><i
+                        class="far fa-fw fa-undo"></i></button>
+            </div>
         </div>
     </div>
+    <audio id="audio-player"></audio>
 
     <script src="/src/js/app.js"></script>
 </body>

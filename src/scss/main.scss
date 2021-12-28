@@ -1,6 +1,7 @@
 $primaryColor: hsl(0, 50%, 60%);
 $secondaryColor: hsl(180, 50%, 38%);
 $tertierColor: hsl(0, 0%, 100%);
+$fourthColor: hsl(204, 70%, 55%);
 
 :root {
     font-family: 'Poppins', sans-serif;
@@ -52,6 +53,7 @@ body {
     height: 100vh;
     background-color: $primaryColor;
     width: 100%;
+    transition: .3s all ease;
 }
 
 .header {
@@ -61,18 +63,12 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: $primaryColor;
+    background-color: inherit;
 
     .logo {
         font-weight: 800;
         letter-spacing: 3px;
         text-transform: uppercase;
-    }
-
-    .buttons {
-        .theme-toggle {
-            margin-right: 10px;
-        }
     }
 }
 
@@ -90,20 +86,18 @@ body {
         margin-bottom: 2em;
 
         li {
-            padding: 6px 10px;
-            border-radius: 4px;
+            button {
+                padding: 6px 10px;
+                border-radius: 4px;
 
-            &.active {
-                background-color: rgba($color: #000, $alpha: .2);
-                font-weight: 600;
-
-                button {
+                &.active {
+                    background-color: rgba($color: #000, $alpha: .2);
                     font-weight: 600;
                 }
-            }
 
-            &:hover {
-                background-color: rgba($color: #000, $alpha: .2);
+                &:hover {
+                    background-color: rgba($color: #000, $alpha: .2);
+                }
             }
 
             &:nth-child(2) {
@@ -138,6 +132,10 @@ body {
         margin-top: 1rem;
         transition: .3s all ease;
 
+        &:hover {
+            opacity: .8;
+        }
+
         &:active {
             transform: scale(.96);
         }
@@ -159,7 +157,27 @@ body {
         justify-content: space-between;
     }
 
+    &.justify-center {
+        justify-content: center;
+    }
+
     &.align-center {
         align-items: center;
     }
+}
+
+.grid {
+    display: grid;
+
+    &.column-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    &.gap-1 {
+        gap: 10px;
+    }
+}
+
+.d-none {
+    display: none;
 }
