@@ -153,7 +153,10 @@ startButton.addEventListener('click', () => {
     resetButton.classList.remove('d-none')
     setTimeout(startTimer, 1000)
     // Play message audio when start button clicked
-    mode === 'pomodoro' ? playAudio('focus.ogg') : playAudio('break.ogg')
+    let messageAudioEl = document.createElement('audio')
+    // Check the timer mode
+    mode === 'pomodoro' ? messageAudioEl.src = '/src/audio/focus.ogg' : messageAudioEl.src = '/src/audio/break.ogg'
+    messageAudioEl.play()
 })
 
 pauseButton.addEventListener('click', () => {

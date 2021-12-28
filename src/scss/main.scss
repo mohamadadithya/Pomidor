@@ -79,6 +79,7 @@ body {
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
     width: 100%;
+    margin-bottom: 1rem;
 
     &__navigation {
         display: block;
@@ -189,4 +190,8 @@ body {
 
 .d-none {
     display: none;
+}
+
+.copyright-text {
+    font-size: .8rem;
 }
